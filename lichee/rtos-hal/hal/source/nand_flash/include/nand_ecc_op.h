@@ -1,0 +1,91 @@
+/*
+* Copyright (c) 2019-2025 Allwinner Technology Co., Ltd. ALL rights reserved.
+*
+* Allwinner is a trademark of Allwinner Technology Co.,Ltd., registered in
+* the the people's Republic of China and other countries.
+* All Allwinner Technology Co.,Ltd. trademarks are used with permission.
+*
+* DISCLAIMER
+* THIRD PARTY LICENCES MAY BE REQUIRED TO IMPLEMENT THE SOLUTION/PRODUCT.
+* IF YOU NEED TO INTEGRATE THIRD PARTY'S TECHNOLOGY (SONY, DTS, DOLBY, AVS OR MPEGLA, ETC.)
+* IN ALLWINNERS'SDK OR PRODUCTS, YOU SHALL BE SOLELY RESPONSIBLE TO OBTAIN
+* ALL APPROPRIATELY REQUIRED THIRD PARTY LICENCES.
+* ALLWINNER SHALL HAVE NO WARRANTY, INDEMNITY OR OTHER OBLIGATIONS WITH RESPECT TO MATTERS
+* COVERED UNDER ANY REQUIRED THIRD PARTY LICENSE.
+* YOU ARE SOLELY RESPONSIBLE FOR YOUR USAGE OF THIRD PARTY'S TECHNOLOGY.
+*
+*
+* THIS SOFTWARE IS PROVIDED BY ALLWINNER"AS IS" AND TO THE MAXIMUM EXTENT
+* PERMITTED BY LAW, ALLWINNER EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND,
+* WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING WITHOUT LIMITATION REGARDING
+* THE TITLE, NON-INFRINGEMENT, ACCURACY, CONDITION, COMPLETENESS, PERFORMANCE
+* OR MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+* IN NO EVENT SHALL ALLWINNER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS, OR BUSINESS INTERRUPTION)
+* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+* STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+* OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#ifndef __NAND_ECC_OP_H
+#define __NAND_ECC_OP_H
+
+/**
+ * name format:
+ * 1. EccBitCount
+ * 2. LimitValue
+ * 3. ErrValue
+ *
+ * [example]
+ * BIT3: 3 bit ecc status
+ * LIMIT2: value 2 (010b) up to limit
+ * ERR7: value 7 (111b) up to error
+ */
+#define ECC_TYPE_BITMAP (0x0000FFFF)
+#define HAS_EXT_ECC_STATUS (1 << 16)
+#define HAS_EXT_ECC_SE01 (1 << 17)
+
+enum ecc_type {
+	ECC_TYPE_ERR = 0,
+	BIT3_LIMIT3_TO_6_ERR7,
+	BIT2_LIMIT1_ERR2,
+	BIT2_LIMIT1_ERR2_LIMIT3,
+	BIT4_LIMIT3_TO_4_ERR15,
+	BIT3_LIMIT3_TO_4_ERR7,
+	BIT3_LIMIT5_ERR2,
+	BIT4_LIMIT5_TO_7_ERR8,
+	BIT4_LIMIT5_TO_7_ERR8_LIMIT_12,
+	BIT2_LIMIT3_ERR2,
+	BIT4_LIMIT4_TO_8_ECC15,
+};
+extern __s32 spi_nand_check_ecc(enum ecc_type type, __u8 status);
+
+/**
+ * name format:
+ * 1. SIZE: size in bytes of each spare area
+ * 2. OFF: offset in bytes without ecc protected
+ * 3. LEN: ecc protected length in bytes
+ *
+ * [example] - MX35LF1GE4AB
+ * SIZE16: each size of spare area is 16 bytes
+ * OFF4: 4 bytes length without ecc protected
+ * LEN12: 12 bytes under ecc protected
+ */
+enum ecc_protected_type {
+	ECC_PROTECTED_TYPE = 0,
+	SIZE16_OFF0_LEN16, /* all spare data are under ecc protection */
+	SIZE16_OFF4_LEN12,
+	SIZE16_OFF4_LEN4_OFF8,
+	SIZE16_OFF4_LEN8_OFF4, /*compatible with GD5F1GQ4UBYIG@R6*/
+	SIZE16_OFF32_LEN16,
+	SIZE64_OFF8_LEN40_OFF16,
+};
+extern __s32 spi_nand_copy_to_spare(enum ecc_protected_type type, __u8 *to,
+				    __u8 *from, __u32 cnt);
+extern __s32 spi_nand_copy_from_spare(enum ecc_protected_type type, __u8 *to,
+				      __u8 *from, __u32 cnt);
+
+#endif

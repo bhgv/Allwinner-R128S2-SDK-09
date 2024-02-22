@@ -1,0 +1,7 @@
+menu "wireless_video"
+
+		config COMPONENTS_WIRELESS_VIDEO
+			bool "wlan video test demo"
+			default n
+
+endmenu

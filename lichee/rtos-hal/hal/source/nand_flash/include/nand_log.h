@@ -1,0 +1,78 @@
+/*
+* Copyright (c) 2019-2025 Allwinner Technology Co., Ltd. ALL rights reserved.
+*
+* Allwinner is a trademark of Allwinner Technology Co.,Ltd., registered in
+* the the people's Republic of China and other countries.
+* All Allwinner Technology Co.,Ltd. trademarks are used with permission.
+*
+* DISCLAIMER
+* THIRD PARTY LICENCES MAY BE REQUIRED TO IMPLEMENT THE SOLUTION/PRODUCT.
+* IF YOU NEED TO INTEGRATE THIRD PARTY'S TECHNOLOGY (SONY, DTS, DOLBY, AVS OR MPEGLA, ETC.)
+* IN ALLWINNERS'SDK OR PRODUCTS, YOU SHALL BE SOLELY RESPONSIBLE TO OBTAIN
+* ALL APPROPRIATELY REQUIRED THIRD PARTY LICENCES.
+* ALLWINNER SHALL HAVE NO WARRANTY, INDEMNITY OR OTHER OBLIGATIONS WITH RESPECT TO MATTERS
+* COVERED UNDER ANY REQUIRED THIRD PARTY LICENSE.
+* YOU ARE SOLELY RESPONSIBLE FOR YOUR USAGE OF THIRD PARTY'S TECHNOLOGY.
+*
+*
+* THIS SOFTWARE IS PROVIDED BY ALLWINNER"AS IS" AND TO THE MAXIMUM EXTENT
+* PERMITTED BY LAW, ALLWINNER EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND,
+* WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING WITHOUT LIMITATION REGARDING
+* THE TITLE, NON-INFRINGEMENT, ACCURACY, CONDITION, COMPLETENESS, PERFORMANCE
+* OR MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+* IN NO EVENT SHALL ALLWINNER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS, OR BUSINESS INTERRUPTION)
+* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+* STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+* OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#ifndef __AWLOG_H__
+#define __AWLOG_H__
+
+#include <stdio.h>
+
+#ifdef CONFIG_LOG_LEVEL
+#define AWLOG_LVL CONFIG_LOG_LEVEL
+#else
+#define AWLOG_LVL 8
+#endif
+
+#ifndef pr_fmt
+#define pr_fmt(fmt) fmt
+#endif
+
+#define AWLOG_LVL_ERROR                  3
+#define AWLOG_LVL_WARNING                4
+#define AWLOG_LVL_INFO                   6
+#define AWLOG_LVL_DBG                    7
+//#define DEBUG
+
+#if (AWLOG_LVL >= AWLOG_LVL_ERROR)
+#define pr_err(fmt, ...) printf(pr_fmt(fmt), ##__VA_ARGS__)
+#else
+#define pr_err(fmt, ...)
+#endif
+
+#if (AWLOG_LVL >= AWLOG_LVL_WARNING)
+#define pr_warn(fmt, ...) printf(pr_fmt(fmt), ##__VA_ARGS__)
+#else
+#define pr_warn(fmt, ...)
+#endif
+
+#if (AWLOG_LVL >= AWLOG_LVL_INFO)
+#define pr_info(fmt, ...) printf(pr_fmt(fmt), ##__VA_ARGS__)
+#else
+#define pr_info(fmt, ...)
+#endif
+
+#if (AWLOG_LVL >= AWLOG_LVL_DBG) && defined(DEBUG)
+#define pr_debug(fmt, ...) printf(pr_fmt(fmt), ##__VA_ARGS__)
+#else
+#define pr_debug(fmt, ...)
+#endif
+
+#endif

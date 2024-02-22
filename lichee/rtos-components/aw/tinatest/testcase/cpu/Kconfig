@@ -1,0 +1,49 @@
+menu "CPU Testcase"
+
+config TESTCASE_CPU_CALC
+	bool "CPU_CALC Testcase."
+	select COMPONENT_DHRYSTONE
+	select COMPONENT_COREMARK
+	default n
+
+if TESTCASE_CPU_CALC
+config LOOP_TIMES
+       default "10000"
+       string "loop times"
+       help
+               This means how many cpu_calc test times need to be tested.
+               Please input the reboot times.
+endif
+
+config TESTCASE_CPU_FREQ
+	bool "CPU_FREQ Testcase."
+	select COMPONENTS_PM
+	default n
+
+if TESTCASE_CPU_FREQ
+config CPU_FREQ_LOOP_TIMES
+       default "10000"
+       string "loop times"
+       help
+               This means how many cpu_freq test times need to be tested.
+               Please input the reboot times.
+
+endif
+
+config TESTCASE_CPU_THERMAL
+	bool "CPU_THERMAL Testcase."
+	select DRIVERS_EFUSE
+	select DRIVERS_GPADC
+	default n
+
+if TESTCASE_CPU_THERMAL
+config THERMAL_LOOP_TIMES
+       default "10000"
+       string "loop times"
+       help
+               This means how many thermal test times need to be tested.
+               Please input the reboot times.
+
+endif
+
+endmenu

@@ -1,0 +1,9 @@
+menuconfig DRIVER_GADGET
+	bool "USB Gadget Support"
+	default n
+
+if DRIVER_GADGET
+source components/common/aw/usb/gadget/adbd/Kconfig
+source components/common/aw/usb/gadget/uacd/Kconfig
+source components/common/aw/usb/gadget/mtpd/Kconfig
+endif

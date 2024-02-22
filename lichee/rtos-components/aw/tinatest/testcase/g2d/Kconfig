@@ -1,0 +1,5 @@
+config TESTCASE_G2D
+	bool "G2D Testcase."
+	select DRIVERS_G2D
+	default n
+

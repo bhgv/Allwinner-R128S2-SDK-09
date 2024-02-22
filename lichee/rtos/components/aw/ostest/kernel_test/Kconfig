@@ -1,0 +1,10 @@
+menuconfig COMPONENTS_OSTEST_KERNEL
+	bool "Kernel Testcase"
+
+if COMPONENTS_OSTEST_KERNEL
+
+config COMPONENTS_OSTEST_SCHEDULE
+    bool "Schedule Testcase"
+    default n
+
+endif

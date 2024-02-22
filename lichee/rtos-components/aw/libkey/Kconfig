@@ -1,0 +1,4 @@
+config COMPONENTS_LIBKEY
+	bool "Allwinner Libkey test"
+	default n
+

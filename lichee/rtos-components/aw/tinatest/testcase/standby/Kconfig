@@ -1,0 +1,13 @@
+config TESTCASE_STANDBY
+	bool "STANDBY Testcase."
+	select COMPONENTS_PM
+	default n
+
+if TESTCASE_STANDBY
+config STANDBY_LOOP_TIMES
+       default "10000"
+       string "loop times"
+       help
+               This means how many standby test times need to be tested.
+               Please input the reboot times.
+endif

@@ -1,0 +1,122 @@
+wifimanager2.0
+
+-version2.0.0
+init version.
+1.linux: support sta/ap/monitor mode for linux os.
+
+-version2.0.1
+1.rtos: add freertos os interface, support sta/ap/monitor mode.
+
+-version2.0.2
+no this version
+
+-version2.0.3
+1.rtos: os add dhcp flow in sta mode.
+2.linux: rm some unused file in linux os.
+3.linux: fix the bug stackdump when disable in sta mode .
+
+-version2.0.4
+1.all: support wpa3 sec in sta mode.
+2.linux: support build in tina-dev and tina-5.0
+3.all: rename ‘os level’ interface, adtape code style.
+4.all: all mode only use:init,deinit,enable,disable,platform interface.
+
+-version2.0.5
+1.all: fix the bug regist event callback func more times.
+2.all: Solve the problem that the connection fails due to too short time.
+3.all: support get wifimanager state interface.
+4.rtos: support linkd_smatconfig/linkd_ble/linkd_softap for freertos os.
+5.rtos: support save ap info in wpa_supplicant.conf file,when connected successed for freertos os.
+6.all: wmg_common.c fix the problem that the char pointer caused the library to crash
+7.all: update some log level.
+8.linux: Fix compilation issues when compiling tina-dev and tina-5.0 for linux os.
+
+-version2.0.6
+1.all: fix a issue that start_udhcpc's paramter is null.
+2.all: fix the bug 'devices busy' when connect second time.
+3.linux: support p2p function.
+4.xrlink: support xrlink function.
+5.linux: support tina5.0.
+6.linux: add config mode_list and compatible "Makefile".
+7.all: add tinanet_build for automated migration.
+
+-version2.0.7
+1.all: register function support config.
+2.all: refactored print function,optimize printing for 'path file func line'.
+3.rtos: fix bug,connect and reconnect interface return befor dhcp success.
+4.all: support modular configuration and compilation.
+5.rtos: fix bug, scan results err and add sec info for rtos.
+6.linux: remove macro BSSID_MAX_LEN and wpa_supplicant.init file.
+7.all: fix the problem of switching mode error.
+8.all: add bitmap for config mode function.
+9.rtos: add p2p interface for rtos.
+10.rtos: optimize code, reduce code size.
+11.xrlink: fix some bug about xrlink.
+12.all: fix bug wifi -l/wifi -v, ssid passwd too long.
+13.linux: support 5G channel display.
+14.rtos: fix freertos wep connect support WPA_AUTH_ALG_SHARED or WPA_AUTH_ALG_OPEN.
+15.rtos: add wifi -r for freertos.
+16.all: add status juge before connect.
+
+-version2.0.8
+1.all: support ssid include blank space, but require quotation marks.
+2.all: support expand cmd, eg:wifi -e linux: ioctl: wlan0 setsusspendmode 1.
+3.all: mv get/set mac func to expand cmd(linux/rtos).
+4.rtos: fix the bug, switch ap connect failed.
+5.linux: support display chinese, but less 10 char.
+6.all: fix the bug, display about sec mode, wifi -s/wifi -l.
+7.rtos: fix complie warning.
+8.rtos: fix the bug, display about rssi.
+
+-version2.0.8.1
+1.xrlink: expand cmd support get/set mac.
+2.xrlink: rm unused files.
+3.rtos: support set scan max num.
+4.rtos: fix bug, wifi -m can  not scan/connect.
+5.rtos: fix bug, reconnect success not cb event.
+6.blelink: fix bug, timeout handle ble deinit.
+7.linux: refactor the way get ipv4.
+
+-version2.0.8.2
+1.rtos: fix bug connect hidden ssid.
+2.ble_link: fix blink crash problem.
+3.rtos: add func about countrycode.
+4.rtos: change scan max num to 50.
+
+-version2.0.8.3
+1.rtos: Fix the problem that connected event is reported multiple times.
+2.common: rename wireless to Wireless.
+3.btmanager: rename wireless to Wireless.
+4.rtos: add some event, dhcp timeout, auth failed, disassoc...
+5.linux: rename wireless to Wireless.
+6.all: unified some print output.
+7.files: add support_list configuration item and description.
+8.rtos: disable wlan, when connect failed.
+9.rtos: dhcp event report two times.
+
+-version2.0.8.4
+1.all: fix some codestyle.
+2.linux: Fix the problem that the -l all command reports an error.
+3.demon: support p2p autoconnect.
+4.linux: support_list supports p2p by default.
+5.linux: fix the problem that the -l p2p command shows failure
+6.linux: optimize p2p GO mode, fix compilation problem.
+7.all: fix complie warning.
+8.linux: support buildroot.
+9.linux: hostapd.conf: add ssid parameter.
+10.all: demo: wep supports ascii password.
+11.all: support sta busy timeout.
+12.linux: p2p:support set listen time.
+13:rtos: first scan ssid failed return fail, change wait for connect.
+14:rtos: can not set auto disable.
+15:rtos: wifi -d:remove network, then disconnect, wifi -l: rssi display err.
+16:all: fix connect failed with 'blank space'.
+17:all: print version in help.
+18:all: add connect with bssid.
+19:freertos: reconnect failed when call disconnect.
+20.freertos: cancle directly connect, config ssid for hidden ssic connect.
+21:freertos: reduce connect timeout 30s to 15s, flush scan buf, before scan.
+22:freertos: fast_connect, do not judge wifi state, do not save ap info.
+23:freertos: fix bug about fast connect not init, flush scan buf when disconnect.
+24:linux: fix bug connect wep ap, trying auth_alg open first and then shared.
+25:linux: fix problem get config

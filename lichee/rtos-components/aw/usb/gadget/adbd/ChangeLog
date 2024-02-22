@@ -1,0 +1,71 @@
+2021-06-16	V1.1.6
+	* 	fix adb shell interactive console exit handle
+
+2019-12-09 	V1.1.5
+	* 	update Notice.txt
+	* 	add A_SYNC handle
+
+2019-12-06 	V1.1.4
+	* 	fix aservice memleak
+
+2019-11-28 	V1.1.3
+	* 	support adb reboot
+
+2019-11-26 	V1.1.2
+	* 	fix adb shell+command miss some characters
+
+2019-11-23 	V1.1.1
+	* 	fix some ctrl+C bug case
+
+2019-11-18 	V1.1.0
+	* 	increase thread priority
+	* 	support PC Ctrl+C in some case, contains
+		adb shell + command(no task, no endless loop), adb pull, adb push
+
+2019-11-15 	V1.0.12
+	* 	set socket option NODELAY
+
+2019-11-11 	V1.0.11
+	* 	add sleep into adb_console_write, avoid dead wait.
+	* 	increase adb-socekt-ser priority
+	* 	add SUPPORT_SPIFFS MACRO
+
+2019-11-06 	V1.0.10
+	* 	regard BLK as REG
+	* 	add send_close into file_sync_service loop
+
+2019-11-04 	V1.0.9
+	* 	add adbd switch(kv, file[default])
+
+2019-11-01 	V1.0.8
+	* 	static codec check
+	* 	add allwinner copyright
+
+2019-10-30 	V1.0.7
+	* 	offer adb forward interface
+
+2019-10-22 	V1.0.6
+	* 	enable socket default, support adb forward
+
+2019-10-15 	V1.0.5
+	* 	support adb pull directory(spiffs adapted)
+	* 	add header,data check
+	* 	fix adb push bug(push large file and no space left)
+
+2019-10-14 	V1.0.4
+	* 	fix adb pull bug
+
+2019-10-03 	V1.0.3
+	* 	fix multi console
+
+2019-10-01 	V1.0.2
+	* 	fix ringbuffer bug
+	* 	fix adb_console_write,ensure write all data
+
+2019-09-30 	V1.0.1
+	* 	support adb forward
+
+2019-09-27 	V1.0.0
+	* 	support adb push/pull
+	* 	support adb shell command
+	* 	support adb shell interactive

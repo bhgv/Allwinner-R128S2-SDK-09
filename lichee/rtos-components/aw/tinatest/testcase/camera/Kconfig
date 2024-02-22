@@ -1,0 +1,6 @@
+config TESTCASE_CAMERA
+	bool "Camera Testcase."
+	select DRIVERS_CSI
+	select HAL_TEST_CSI
+	default n
+

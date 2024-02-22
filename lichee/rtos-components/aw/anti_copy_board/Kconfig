@@ -1,0 +1,8 @@
+config COMPONENTS_AW_ANTI_COPY_BOARD
+    bool "anti-copy-board"
+    depends on (COMPONENT_CLI_COMMANDS && DRIVERS_EFUSE && DRIVERS_CE)
+    default n
+    help
+        sunxi anti copy board.
+
+        If unsure, say N.

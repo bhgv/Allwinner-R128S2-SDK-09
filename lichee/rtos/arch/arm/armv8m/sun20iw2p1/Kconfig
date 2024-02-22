@@ -1,0 +1,28 @@
+if ARCH_SUN20IW2P1
+
+config POWER_FALL_PROTECTION
+	bool "power fail protection"
+	default n
+	help
+		When vbat drops to 2.7V, SoC will reset to prevent the system working
+		in the wrong voltage.
+
+config USE_EXTERNAL_LOW_FREQ_CRYSTAL_CLK
+	bool "Use the external low frequency crystal clock"
+	default n
+	help
+		Use the external low frequency crystal clock. After enable this config,
+		the clock source of sys_32k, sysrtc_32k and ble_32k will be
+		the external low frequency crystal.
+
+config WAIT_RTC_COUNTER_WHEN_SWITCH_RTC_CLK_SRC
+	bool "Wait RTC counter when switch RTC module clock source"
+	default n
+	help
+		Wait the value of RTC second counter to increase 1 when switch RTC module
+		clock source to a clock whose frequency is lower than previous clock. If we
+		don't immediately switch clock source after the value of RTC second counter
+		increase 1, the RTC time will jump and automatically recover after 31s.
+		This configuration is used to fix RTC time jump issue and will add about
+		maximal 1s elapsed time. If you need to use RTC, you should enable it.
+endif

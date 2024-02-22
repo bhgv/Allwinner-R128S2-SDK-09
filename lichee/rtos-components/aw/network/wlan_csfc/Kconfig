@@ -1,0 +1,17 @@
+choice
+    prompt "get wifi mac address"
+    default COMPONENTS_WLAN_MAC_DEFAULT
+
+config COMPONENTS_WLAN_MAC_DEFAULT
+    bool "set wifi mac by default value"
+config COMPONENTS_WLAN_MAC_RANDOM
+    bool "set wifi mac by random value"
+config COMPONENTS_WLAN_MAC_PARAM
+    bool "set wifi mac by param"
+config COMPONENTS_WLAN_MAC_FILE
+    bool "set wifi mac by file"
+config COMPONENTS_WLAN_MAC_EFUSE
+    bool "set wifi mac by efuse"
+config COMPONENTS_WLAN_MAC_CHIPID
+    bool "set wifi mac by chipid"
+endchoice

@@ -1,0 +1,6 @@
+config COMPONENTS_FORMAT
+	bool "Format Support"
+	default n
+	help
+		support component aw format.
+

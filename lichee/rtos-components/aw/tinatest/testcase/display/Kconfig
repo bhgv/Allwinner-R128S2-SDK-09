@@ -1,0 +1,14 @@
+menu "Display Testcase"
+
+config TESTCASE_LVGL
+	bool "LVGL Testcase."
+	select COMPONENTS_LVGL8
+	select LVGL8_EXAMPLES
+	default n
+
+config TESTCASE_DISPLAYIF
+	bool "DISPLAYIF Testcase."
+	depends on DISP2_SUNXI
+	default n
+
+endmenu

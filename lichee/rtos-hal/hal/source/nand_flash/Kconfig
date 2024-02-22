@@ -1,0 +1,25 @@
+menu "Nand Flash Devices"
+
+config DRIVERS_NAND_FLASH
+    bool "enable nand flash driver"
+        default n
+    help
+        This option enables the NAND flash driver.
+
+config NAND_FLASH_DEBUG
+    bool "enable nand flash debug log"
+    depends on DRIVERS_NAND_FLASH
+        default n
+    help
+        Enable this option to enable debug logging for the NAND flash driver.
+
+config NAND_FLASH_NFTL
+    bool "enable nand nftl"
+    depends on DRIVERS_NAND_FLASH
+        default n
+    help
+        Enable this option to support the NAND flash NFTL (NAND Flash Translation Layer) feature.
+        PS:To enable this option, you need to have the nftl driver source code
+        nftl driver directory is: nand_flash/lib
+
+endmenu

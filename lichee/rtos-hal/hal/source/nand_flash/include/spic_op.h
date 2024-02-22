@@ -1,0 +1,75 @@
+/*
+* Copyright (c) 2019-2025 Allwinner Technology Co., Ltd. ALL rights reserved.
+*
+* Allwinner is a trademark of Allwinner Technology Co.,Ltd., registered in
+* the the people's Republic of China and other countries.
+* All Allwinner Technology Co.,Ltd. trademarks are used with permission.
+*
+* DISCLAIMER
+* THIRD PARTY LICENCES MAY BE REQUIRED TO IMPLEMENT THE SOLUTION/PRODUCT.
+* IF YOU NEED TO INTEGRATE THIRD PARTY'S TECHNOLOGY (SONY, DTS, DOLBY, AVS OR MPEGLA, ETC.)
+* IN ALLWINNERS'SDK OR PRODUCTS, YOU SHALL BE SOLELY RESPONSIBLE TO OBTAIN
+* ALL APPROPRIATELY REQUIRED THIRD PARTY LICENCES.
+* ALLWINNER SHALL HAVE NO WARRANTY, INDEMNITY OR OTHER OBLIGATIONS WITH RESPECT TO MATTERS
+* COVERED UNDER ANY REQUIRED THIRD PARTY LICENSE.
+* YOU ARE SOLELY RESPONSIBLE FOR YOUR USAGE OF THIRD PARTY'S TECHNOLOGY.
+*
+*
+* THIS SOFTWARE IS PROVIDED BY ALLWINNER"AS IS" AND TO THE MAXIMUM EXTENT
+* PERMITTED BY LAW, ALLWINNER EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND,
+* WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING WITHOUT LIMITATION REGARDING
+* THE TITLE, NON-INFRINGEMENT, ACCURACY, CONDITION, COMPLETENESS, PERFORMANCE
+* OR MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+* IN NO EVENT SHALL ALLWINNER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS, OR BUSINESS INTERRUPTION)
+* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+* STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+* OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#ifndef __SPIC_OP_H
+#define __SPIC_OP_H
+
+#define SPI_NAND_READY		(1U << 0)
+#define SPI_NAND_ERASE_FAIL	(1U << 2)
+#define SPI_NAND_WRITE_FAIL	(1U << 3)
+#define SPI_NAND_ECC_FIRST_BIT  (4)
+#define SPI_NAND_ECC_BITMAP	(0x3)
+#define SPI_NAND_QE		(1U << 0)
+#define SPI_NAND_ECC_ENABLE	(1U << 4)
+#define SPI_NAND_BUF_MODE	(1U << 3)
+
+#define SPI_NAND_INT_ECCSR_BITMAP	(0xf)
+
+#define SPI_NAND_WREN               0x06
+#define SPI_NAND_WRDI               0x04
+#define SPI_NAND_GETSR              0x0f   //get status/features
+#define SPI_NAND_SETSR              0x1f   //set status/features
+#define SPI_NAND_PAGE_READ          0x13
+#define SPI_NAND_FAST_READ_X1       0x0b
+#define SPI_NAND_READ_X1            0x03
+#define SPI_NAND_READ_X2            0x3b
+#define SPI_NAND_READ_X4            0x6b
+#define SPI_NAND_READ_DUAL_IO       0xbb
+#define SPI_NAND_READ_QUAD_IO       0xeb
+#define SPI_NAND_RDID               0x9f
+#define SPI_NAND_PP                 0x02
+#define SPI_NAND_PP_X4              0x32
+#define SPI_NAND_RANDOM_PP          0x84
+#define SPI_NAND_RANDOM_PP_X4       0x34
+#define SPI_NAND_PE                 0x10   //program execute
+#define SPI_NAND_BE                 0xd8   //block erase
+#define SPI_NAND_RESET              0xff
+#define SPI_NAND_READ_INT_ECCSTATUS 0x7c
+
+extern struct hal_spi_master nand_spim;
+
+__s32 Spic_init(__u32 spi_no);
+__s32 Spic_exit(__u32 spi_no);
+__s32 Spic_rw_new(__u32 spi_no, __u32 tcnt, __u8 *txbuf, __u32 rcnt, __u8 *rxbuf, __u32 dummy_cnt, __u32 single_cnt);
+__s32 spi_nand_rdid(__u32 spi_no, __u32 chip, __u32 id_addr, __u32 addr_cnt, __u32 id_cnt, void *id);
+
+#endif

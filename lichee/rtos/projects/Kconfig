@@ -1,0 +1,53 @@
+choice
+    prompt "Configure Application"
+    default PROJECT_R128S2_DEVKIT_M33
+
+config PROJECT_R128S2_DEVKIT_M33
+    bool "r128s2 devkit m33 system"
+	select PROJECT_R128S2
+    ---help---
+        r128s2 devkit m33 system
+
+config PROJECT_R128S2_DEVKIT_C906
+    bool "r128s2 devkit c906 system"
+	select PROJECT_R128S2
+    ---help---
+        r128s2 devkit c906 system
+
+config PROJECT_R128S2_DEVKIT_RGB_M33
+    bool "r128s2 devkit rgb m33 system"
+	select PROJECT_R128S2
+    ---help---
+        r128s2 devkit rgb m33 system
+
+config PROJECT_R128S2_DEVKIT_RGB_C906
+    bool "r128s2 devkit rgb c906 system"
+	select PROJECT_R128S2
+    ---help---
+        r128s2 devkit rgb c906 system
+
+config PROJECT_R128S2_EVT_M33
+    bool "r128s2 evt m33 system"
+	select PROJECT_R128S2
+    ---help---
+        r128s2 evt m33 system
+
+config PROJECT_R128S2_EVT_C906
+    bool "r128s2 evt c906 system"
+	select PROJECT_R128S2
+    ---help---
+        r128s2 evt c906 system
+
+endchoice
+
+config PROJECT_R128S2
+    bool
+
+config PLATFORM_FPGA
+    bool "Run on fpga"
+    default n
+
+config PROJECT_TESTCASE
+    bool "Project Testcase"
+    default n
+
